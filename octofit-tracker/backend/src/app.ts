@@ -1,4 +1,5 @@
 import express from 'express';
+import cors from 'cors';
 import activitiesRouter from './routes/activities';
 import leaderboardRouter from './routes/leaderboard';
 import teamsRouter from './routes/teams';
@@ -7,6 +8,12 @@ import workoutsRouter from './routes/workouts';
 
 export const app = express();
 
+const codespaceName = process.env.CODESPACE_NAME;
+const frontendOrigin = codespaceName
+  ? `https://${codespaceName}-5173.app.github.dev`
+  : 'http://localhost:5173';
+
+app.use(cors({ origin: frontendOrigin }));
 app.use(express.json());
 
 app.get('/api/health', (_request, response) => {
