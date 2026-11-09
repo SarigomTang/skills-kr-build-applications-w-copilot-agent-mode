@@ -5,7 +5,7 @@ const port = 8000;
 const codespaceName = process.env.CODESPACE_NAME;
 const baseUrl = codespaceName
   ? `https://${codespaceName}-8000.app.github.dev`
-  : 'http://localhost:8000';
+  : `http://localhost:${port}`;
 
 async function startServer(): Promise<void> {
   await connectDatabase();
